@@ -59,3 +59,23 @@
     </script>
 </body>
 </html>
+ document.getElementById('communityForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const name = document.getElementById('name').value;
+            const description = document.getElementById('description').value;
+
+            fetch('/community', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ name, description })
+            })
+            .then(response => response.json())
+            .then(message => {
+                alert(message.message);
+                window.location.reload();
+            });
+        });
+    });
+</script>
